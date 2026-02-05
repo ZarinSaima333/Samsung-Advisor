@@ -1,11 +1,8 @@
+# main.py
 import time
-from scraper import get_phone_links, scrape_phone
-from preprocess import (
-    extract_number,
-    normalize_price,
-    parse_release_date,
-    parse_series
-)
+import random
+from scraper import get_phone_links, get_phone_specs
+from preprocess import extract_number, normalize_price, parse_release_date, parse_series
 from insert import insert_device
 
 links = get_phone_links()
@@ -13,7 +10,8 @@ print(f"🔍 Found {len(links)} Samsung devices")
 
 for url in links:
     try:
-        raw = scrape_phone(url)
+        raw = get_phone_specs(url)
+        print(f"Scraping: {raw['model']}")
 
         price_value, price_currency, price_usd = normalize_price(raw["price"])
 
@@ -38,7 +36,9 @@ for url in links:
         insert_device(device)
         print(f"✅ Inserted: {device['model']}")
 
-        time.sleep(1)
+        time.sleep(random.uniform(3, 6))  # polite delay
 
     except Exception as e:
         print(f"❌ Failed for {url}: {e}")
+
+print("\n✅ Done inserting all devices")

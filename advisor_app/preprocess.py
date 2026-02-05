@@ -1,47 +1,48 @@
+# preprocess.py
 import re
 from datetime import datetime
-
-USD_TO_USD = 1.0
-EUR_TO_USD = 1.08
-INR_TO_USD = 0.012
 
 def extract_number(text):
     if not text:
         return None
-    match = re.findall(r"[\d.]+", text)
+    match = re.findall(r"[\d\.]+", text.replace(",", ""))
     return float(match[0]) if match else None
-
 
 def normalize_price(price_text):
     if not price_text:
         return None, None, None
+    # Example: "About 150 EUR"
+    match = re.search(r"([\d\.]+)\s*([A-Z]{2,3})", price_text)
+    if not match:
+        return None, None, None
+    value, currency = match.groups()
+    value = float(value)
 
-    value = extract_number(price_text)
-
-    if "$" in price_text:
-        return value, "USD", value * USD_TO_USD
-    elif "€" in price_text:
-        return value, "EUR", value * EUR_TO_USD
-    elif "₹" in price_text:
-        return value, "INR", value * INR_TO_USD
-    else:
-        return value, "UNKNOWN", None
-
+    # convert to USD (example rates)
+    rates = {"EUR": 1.1, "INR": 0.012, "USD": 1}
+    usd = value * rates.get(currency, 1)
+    return value, currency, round(usd, 2)
 
 def parse_release_date(text):
+    if not text:
+        return None
+    # Example: "2026, January 13"
     try:
-        return datetime.strptime(text, "%Y, %B %d").date()
+        return datetime.strptime(text.strip(), "%Y, %B %d").date()
     except:
         return None
 
-
-def parse_series(model):
-    if "Galaxy S" in model:
-        return "S"
-    if "Galaxy A" in model:
+def parse_series(model_name):
+    if not model_name:
+        return "Other"
+    model_name = model_name.upper()
+    if model_name.startswith("GALAXY A"):
         return "A"
-    if "Galaxy Z" in model:
-        return "Z"
-    if "Galaxy M" in model:
+    elif model_name.startswith("GALAXY M"):
         return "M"
-    return "Other"
+    elif model_name.startswith("GALAXY S"):
+        return "S"
+    elif model_name.startswith("GALAXY Z"):
+        return "Z"
+    else:
+        return "Other"
