@@ -245,9 +245,9 @@ GET /test-db
 ```
 
 #### 3. Ask Questions (Main Feature)
-<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%201.png" width="400" height="200">
-<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%202.png" width="400" height="200">
-<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%203.png" width="400" height="200">
+<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%201.png" width="800" height="400">
+<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%202.png" width="800" height="400">
+<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%203.png" width="800" height="400">
 
 ## 🧪 Testing the Scraper
 
