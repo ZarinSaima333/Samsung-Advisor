@@ -17,6 +17,11 @@ An intelligent AI-powered Samsung smartphone advisor that helps users find detai
 - **Smart Web Scraping**: Retry logic and rate limiting for reliable data collection
 - **RAG Architecture**: Combines retrieval and generation for accurate answers
 
+## 🔄 Project Workflow
+
+![Workflow Diagram](./assets/workflow.png)
+<!-- Add your workflow diagram image to ./assets/workflow.png -->
+
 ## 🛠️ Technology Stack
 
 - **Backend Framework**: FastAPI
@@ -37,16 +42,15 @@ Samsung-Advisor/
 │   ├── database.py          # Database connection management
 │   ├── scraper.py           # Web scraping engine for GSMArena
 │   ├── preprocess.py        # Data cleaning and normalization
-│   ├── ingest.py            # Data ingestion pipeline
+│   ├── ingest.py            # Data ingestion pipeline (live scraping)
 │   ├── insert.py            # Database insertion operations
 │   ├── rag.py               # RAG agent (SQL query generation)
 │   ├── llm.py               # LLM response generation agent
-│   └── preprocess_txt.py    # PDF data processing (alternative)
+│   └── preprocess_txt.py    # PDF data processing (easier alternative)
 ├── check.py                 # Standalone scraper testing script
 ├── requirements.txt         # Python dependencies
 ├── .gitignore              # Git ignore rules
 └── README.md               # Project documentation
-
 ```
 
 ## 🚀 Setup Instructions
@@ -152,17 +156,36 @@ Base.metadata.create_all(bind=engine)
 
 ### Step 7: Scrape and Ingest Data
 
+**Option A: Live Web Scraping (Full Data Collection)**
+
 ```bash
 # Run the data ingestion script
 python advisor_app/ingest.py
 ```
 
 This will:
-- Scrape Samsung phone data from GSMArena
+- Scrape Samsung phone data from GSMArena in real-time
 - Process and normalize the data
 - Insert into PostgreSQL database
 
 **Note**: This process may take 15-30 minutes depending on the number of devices.
+
+**Option B: PDF Processing (Easier & Faster Alternative) ⚡**
+
+If you already have scraped data stored in a PDF file:
+
+```bash
+# Run the PDF processing script
+python advisor_app/preprocess_txt.py
+```
+
+This is the **easiest method** as it:
+- Reads pre-scraped data from a PDF file
+- Processes and normalizes it
+- Inserts into the database much faster
+- No risk of being blocked by the website
+
+**Recommended**: Use Option B if you have a PDF of scraped data, otherwise use Option A.
 
 ### Step 8: Run the Application
 
@@ -173,7 +196,14 @@ uvicorn advisor_app.main:app --reload
 
 The API will be available at: `http://localhost:8000`
 
-## 📖 Usage
+## 📖 Usage & Demo
+
+### FastAPI Interactive Documentation
+
+![FastAPI Demo Screenshot](./assets/fastapi-demo.png)
+<!-- Add your FastAPI demo screenshot to ./assets/fastapi-demo.png -->
+
+Visit `http://localhost:8000/docs` for Swagger UI interactive documentation where you can test all endpoints directly in your browser.
 
 ### API Endpoints
 
@@ -256,10 +286,6 @@ curl -X POST "http://localhost:8000/ask" \
   -d '{"question": "Which Samsung A series phone has the best battery?"}'
 ```
 
-### Interactive API Documentation
-
-Visit `http://localhost:8000/docs` for Swagger UI interactive documentation.
-
 ## 🧪 Testing the Scraper
 
 Test the web scraper independently:
@@ -323,12 +349,12 @@ Solution: Verify your GEMINI_API_KEY in .env file is correct
 
 **3. Scraping Blocked (Too Many Requests)**
 ```
-Solution: The scraper includes retry logic. Wait a few minutes and try again.
+Solution: The scraper includes retry logic. Wait a few minutes and try again, or use the PDF processing method (preprocess_txt.py)
 ```
 
 **4. No Data in Database**
 ```
-Solution: Run python advisor_app/ingest.py to populate the database
+Solution: Run python advisor_app/ingest.py or python advisor_app/preprocess_txt.py to populate the database
 ```
 
 **5. Module Import Errors**
