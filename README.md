@@ -19,8 +19,10 @@ An intelligent AI-powered Samsung smartphone advisor that helps users find detai
 
 ## 🔄 Project Workflow
 
-![Workflow Diagram](./assets/workflow.png)
+![Workflow Diagram](/Samsung-Advisor/assets/Samsung Workflow.png)
 <!-- Add your workflow diagram image to ./assets/workflow.png -->
+## 📹 Project Demo
+YT Link: https://youtu.be/xJuQkneAqlc
 
 ## 🛠️ Technology Stack
 
