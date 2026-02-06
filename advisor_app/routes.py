@@ -1,10 +1,25 @@
 # routes.py
 from fastapi import APIRouter, Depends
-from sqlalchemy.orm import Session
-from database import get_db
 from model import SamsungDevice
+from sqlalchemy.orm import Session
+from pydantic import BaseModel
+from database import get_db
+from rag import generate_sql_and_fetch
+from llm import generate_answer
 
 router = APIRouter()
+class QuestionRequest(BaseModel):
+    question: str
+
+@router.post("/ask")
+def ask_question(req: QuestionRequest, db: Session = Depends(get_db)):
+    # Step 1: RAG -> generate SQL + fetch rows
+    db_rows = generate_sql_and_fetch(req.question, db)
+    
+    # Step 2: LLM -> generate natural language answer
+    answer = generate_answer(req.question, db_rows)
+    
+    return {"answer": answer}
 
 # Health check
 @router.get("/health")
@@ -27,3 +42,4 @@ def test_db(db: Session = Depends(get_db)):
             "price_usd": device.price_usd
         })
     return {"status": "DB connected", "devices": result}
+
