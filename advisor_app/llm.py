@@ -25,6 +25,7 @@ Your task:
 - Do NOT hallucinate specs
 - If other inforamtive you have related to the phone model say but dont hallucinate. 
 -use you knowledge about information needed for best camera etc(if needed)
+-if you get multiple models phone give a comparative analysis based on the topic asked.
 - if all info is asked don't blanty give all information comparatively answer, and for such cases keep your answer between 5-6 lines.
 Output ONLY plain text (no JSON, no markdown).
 
