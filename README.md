@@ -245,51 +245,9 @@ GET /test-db
 ```
 
 #### 3. Ask Questions (Main Feature)
-```bash
-POST /ask
-Content-Type: application/json
-
-{
-  "question": "What is the price of Samsung Galaxy A07?"
-}
-```
-
-**Response:**
-```json
-{
-  "answer": "The Samsung Galaxy A07 is priced at approximately $120 USD (14,640 BDT)."
-}
-```
-
-### Example Queries
-
-**Price Information:**
-```bash
-curl -X POST "http://localhost:8000/ask" \
-  -H "Content-Type: application/json" \
-  -d '{"question": "How much does the Samsung Galaxy S25 cost?"}'
-```
-
-**Display Comparison:**
-```bash
-curl -X POST "http://localhost:8000/ask" \
-  -H "Content-Type: application/json" \
-  -d '{"question": "Which Samsung Z series phone has the biggest display?"}'
-```
-
-**Latest Phone:**
-```bash
-curl -X POST "http://localhost:8000/ask" \
-  -H "Content-Type: application/json" \
-  -d '{"question": "What is the latest Samsung phone?"}'
-```
-
-**Battery Comparison:**
-```bash
-curl -X POST "http://localhost:8000/ask" \
-  -H "Content-Type: application/json" \
-  -d '{"question": "Which Samsung A series phone has the best battery?"}'
-```
+<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%201.png" width="400" height="200">
+<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%202.png" width="400" height="200">
+<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Demo%203.png" width="400" height="200">
 
 ## 🧪 Testing the Scraper
 
@@ -301,20 +259,6 @@ python check.py
 
 This will scrape and display Samsung phone specifications without storing them in the database.
 
-## 🏗️ How It Works
-
-### RAG Architecture
-
-1. **User Query** → User asks a natural language question
-2. **RAG Agent** (`rag.py`) → Converts question to SQL using Gemini AI
-3. **Database Query** → Executes SQL to fetch relevant phone data
-4. **LLM Agent** (`llm.py`) → Generates human-friendly answer from data
-5. **Response** → Returns natural language answer to user
-
-### Data Flow
-
-```
-GSMArena → Scraper → Preprocessor → PostgreSQL → RAG → Gemini AI → User
 ```
 
 ## 🔧 Configuration
@@ -342,40 +286,23 @@ The `samsung_devices` table includes:
 
 ### Common Issues
 
-**1. Database Connection Error**
-```
-Solution: Check your DATABASE_URL in .env file and ensure PostgreSQL is running
-```
-
-**2. Gemini API Key Invalid**
-```
-Solution: Verify your GEMINI_API_KEY in .env file is correct
-```
-
-**3. Scraping Blocked (Too Many Requests)**
+**1. Scraping Blocked (Too Many Requests)**
 ```
 Solution: The scraper includes retry logic. Wait a few minutes and try again, or use the PDF processing method (preprocess_txt.py)
 ```
 
-**4. No Data in Database**
+**2. No Data in Database**
 ```
 Solution: Run python advisor_app/ingest.py or python advisor_app/preprocess_txt.py to populate the database
 ```
 
-**5. Module Import Errors**
+**3. Module Import Errors**
 ```
 Solution: Ensure you're in the virtual environment and all dependencies are installed
 pip install -r requirements.txt
 ```
 
-## 📊 Example Questions You Can Ask
 
-- "What's the price of Samsung Galaxy A55?"
-- "Compare battery life between Galaxy S24 and S25"
-- "Which phone has the best camera in the M series?"
-- "Show me all phones with 6.7 inch display"
-- "What's the latest foldable Samsung phone?"
-- "Which is cheaper: Galaxy A15 or Galaxy A25?"
 
 ## 🤝 Contributing
 
