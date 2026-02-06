@@ -20,7 +20,7 @@ An intelligent AI-powered Samsung smartphone advisor that helps users find detai
 ## 🔄 Project Workflow
 
 <!-- ![Workflow Diagram](![Workflow Diagram](<imgsrc="https://github.com/ZarinSaima333/SamsungAdvisor/blob/main/assets/Samsung%20Workflow.pngraw=true" width="600" height="400">)) -->
-<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Samsung%20Workflow.png?raw=true" width="600" height="400">
+<img src="https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Samsung%20Workflow.png?raw=true" width="200" height="400">
 
 
 <!-- Add your workflow diagram image to ./assets/workflow.png -->
