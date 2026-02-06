@@ -19,7 +19,7 @@ An intelligent AI-powered Samsung smartphone advisor that helps users find detai
 
 ## 🔄 Project Workflow
 
-![Workflow Diagram](https://github.com/username/repo-name/blob/main/assets/Samsung-Workflow.png?raw=true)
+![Workflow Diagram](![Workflow Diagram](https://github.com/ZarinSaima333/Samsung-Advisor/blob/main/assets/Samsung%20Workflow.png?raw=true))
 
 <!-- Add your workflow diagram image to ./assets/workflow.png -->
 ## 📹 Project Demo
@@ -203,7 +203,7 @@ The API will be available at: `http://localhost:8000`
 
 ### FastAPI Interactive Documentation
 
-![FastAPI Demo Screenshot](./assets/fastapi-demo.png)
+![FastAPI Demo Screenshot](./assets/demo1.png)
 <!-- Add your FastAPI demo screenshot to ./assets/fastapi-demo.png -->
 
 Visit `http://localhost:8000/docs` for Swagger UI interactive documentation where you can test all endpoints directly in your browser.
