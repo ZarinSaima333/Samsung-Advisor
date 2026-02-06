@@ -257,10 +257,6 @@ Test the web scraper independently:
 python check.py
 ```
 
-This will scrape and display Samsung phone specifications without storing them in the database.
-
-```
-
 ## 🔧 Configuration
 
 ### Database Schema
